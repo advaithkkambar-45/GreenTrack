@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block body %}
+<section class="hero"><div><label>COMMUNITY AFFORESTATION</label><h1>Grow a greener community.</h1><p>Register planted trees, record their condition and follow their growth.</p><div class="hero-actions"><a class="btn" href="/add">＋ Register a tree</a><a class="btn light" href="/about">About this project</a></div></div><span class="big">🌱</span></section>
+<section class="project-strip"><div><strong>GreenTrack Project</strong><span>Community afforestation · Group 12, ECE, Section A</span></div><a href="/about">View project details →</a></section>
+<section class="stats"><article><small>Total trees</small><strong>{{total}}</strong></article><article><small>Healthy</small><strong>{{healthy}}</strong></article><article><small>Needs care</small><strong>{{care}}</strong></article><article><small>Healthy status ratio</small><strong>{{survival}}%</strong></article></section>
+<div class="bar"><h2>Plantation records</h2><a class="btn light" href="/export">Export CSV ↓</a></div>
+<form class="search"><input name="q" value="{{q}}" placeholder="Search species, location or person"><select name="status"><option value="">All statuses</option>{% for s in ['Healthy','Needs care','Dead'] %}<option {% if status==s %}selected{% endif %}>{{s}}</option>{% endfor %}</select><button class="btn">Search</button></form>
+<div class="table"><table><tr><th>Tree</th><th>Location</th><th>Planting date</th><th>Planted by</th><th>Status</th></tr>
+{% for t in trees %}<tr><td><a href="/tree/{{t.id}}">{{t.species}}</a></td><td>{{t.location}}</td><td>{{t.planted_on}}</td><td>{{t.planted_by or '—'}}</td><td><span class="tag">{{t.status}}</span></td></tr>{% else %}<tr><td colspan="5">No tree records yet. Select “Register a tree” to begin.</td></tr>{% endfor %}</table></div>
+<p class="note">The ratio is calculated from manually entered statuses and is not an independently verified ecological survival rate.</p>{% endblock %}

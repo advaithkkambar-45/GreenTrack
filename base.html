@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GreenTrack tree plantation and community afforestation management system"><title>{% block title %}GreenTrack | Tree Plantation Management{% endblock %}</title><link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"></head><body>
+<header><a class="brand" href="/"><span class="brand-icon">🌳</span><span><b>GreenTrack</b><small>Tree Plantation Management</small></span></a><nav><a href="/">Dashboard</a><a href="/add">Add Tree</a><a href="/about">About Project</a></nav></header><main>
+{% with msgs=get_flashed_messages() %}{% for m in msgs %}<p class="flash">{{m}}</p>{% endfor %}{% endwith %}
+{% block body %}{% endblock %}</main><footer><strong>GreenTrack</strong> · A community afforestation project<br><span>Made by Group 12 · ECE · Section A</span></footer></body></html>

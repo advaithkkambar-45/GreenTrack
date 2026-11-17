@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}<h1>{{'Edit tree record' if tree else 'Register a planted tree'}}</h1><p class="muted">Fields marked * are required.</p><form class="card" method="post" enctype="multipart/form-data"><div class="grid">
+<label>Tree species *<input name="species" required value="{{tree.species if tree else ''}}" placeholder="Neem, Mango, Jackfruit"></label>
+<label>Planting location *<input name="location" required value="{{tree.location if tree else ''}}" placeholder="College garden / park"></label>
+<label>Planting date *<input type="date" name="planted_on" required value="{{tree.planted_on if tree else today}}"></label>
+<label>Planted by<input name="planted_by" value="{{tree.planted_by if tree else ''}}"></label>
+<label>Status<select name="status">{% for s in ['Healthy','Needs care','Dead'] %}<option {% if tree and tree.status==s %}selected{% elif not tree and s=='Healthy' %}selected{% endif %}>{{s}}</option>{% endfor %}</select></label>
+{% if not tree %}<label>Photo (optional)<input type="file" name="photo" accept=".png,.jpg,.jpeg,.webp"></label>{% endif %}
+<label class="wide">Notes<textarea name="notes" rows="4">{{tree.notes if tree else ''}}</textarea></label></div><button class="btn">Save record</button> <a href="/" class="muted">Cancel</a></form>{% endblock %}
